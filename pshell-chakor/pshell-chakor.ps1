@@ -188,7 +188,7 @@ function corn {
     Write-Host "Success!" -ForegroundColor Green
 
     #Reset everything
-    Write-Host "Resetting dev branch" -ForegroundColor Cyan
+    Write-Host "Resetting release/next branch" -ForegroundColor Cyan
     git reset --hard origin/release/next
     Write-Host "Success!" -ForegroundColor Green
 
@@ -215,6 +215,18 @@ function mfb {
 }
 
 # |-------------------------
+# | ptd: push to feature branch
+# |-------------------------
+#  Push to feature branch
+# |-------------------------
+# 
+function ptf {
+    Param($featureBranch = $(git symbolic-ref --short HEAD))
+    Write-Host "Attempting to push to $featureBranch" -ForegroundColor Cyan
+    git push origin HEAD:refs/for/$featureBranch
+}
+
+# |-------------------------
 # | ptd: push to dev
 # |-------------------------
 #  Performs Merge to dev Steps
@@ -238,9 +250,61 @@ function ptr {
     git push origin HEAD:refs/for/release/next
 }
 
+# |-------------------------
+# | buildw: Build the web project
+# |-------------------------
+#  Build the web project
+# |-------------------------
+# 
+function buildw {
+    Write-Host "Attempting to build Web Solution" -ForegroundColor Cyan
+    $MSBuildPath = "C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe"
+    $SolutionPath
+    . $MSBuildPath $SolutionPath
+}
+
+# |-------------------------
+# | glp: Git log pretty
+# |-------------------------
+#  Pretty git log
+# |-------------------------
+# 
+function glp {
+    Write-Host "Trying to execute git log and make it pretty" -ForegroundColor Cyan
+    git log --oneline --graph --decorate
+}
+
+
+# |-------------------------
+# | gl: Git log
+# |-------------------------
+#  Pretty git log
+# |-------------------------
+# 
+function glg {
+    Write-Host "Trying to execute git log" -ForegroundColor Cyan
+    git log
+}
+
+
+# |-------------------------
+# | gl: Git reflog
+# |-------------------------
+#  Pretty git reflog
+# |-------------------------
+# 
+function grl {
+    Write-Host "Trying to execute git reflog" -ForegroundColor Cyan
+    git reflog
+}
+
+
+
 # |-------------------------|
 # | Module initialization	
 # |-------------------------|
 
 #  Change directory to our repo folder
 cr
+
+
