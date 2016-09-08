@@ -17,5 +17,3 @@ Write-Host "  Trying to run the module from:"
 Write-Host "  $destLocation\pshell-chakor.ps1"
 
 . "$destLocation\pshell-chakor.ps1"
-testInstallChakor
-

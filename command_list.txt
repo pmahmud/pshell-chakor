@@ -1,0 +1,35 @@
+-------------------------------------------------------------------------------------
+| List of commands for the PShellChakor
+-------------------------------------------------------------------------------------
+| Pallab Mahmud - 09/08/2016
+-------------------------------------------------------------------------------------
+
+start		Open in explorer
+cr			Go to repository directory
+xr			Open the repository folder in the explorer
+
+crw			Go to MerchantWebMVC folder
+xrw			Open MerchantWebMVC in the explorer
+buildw		Build the web project
+watchw		Webpack build and watch
+
+npp			Open file with notepad++
+vs			Open visual studio in admin mode
+jd			Open jira dashboard
+js			Open jira scrum board
+
+cout		Checkout a feature branch, checks out master and fetches without params
+ptf			Push to feature branch
+
+cod			Checkout dev, fetch and reset
+merge		Merge feature branch, shows a list of local branches without params
+ptd			Push to dev
+
+corn		Checkout release/next fetch and reset 
+merge		Merge feature branch, shows a list of local branches without params
+ptr			Push to release/next
+
+stat		Git status
+log			Git log
+logp	 	Git log pretty
+logr		Git reflog
