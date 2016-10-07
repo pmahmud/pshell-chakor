@@ -146,7 +146,7 @@ function gerrit {
         git fetch
         Write-Host "Checking out $branchName..." -ForegroundColor Cyan
         git checkout $branchName
-        Write-Host "Success! you can start working now." -ForegroundColor Cyan
+        Write-Host "Success! you can start working on your new branch now." -ForegroundColor Green
     }
 }
 
