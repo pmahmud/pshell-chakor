@@ -1,7 +1,42 @@
 Import-Module PSReadLine
 Set-PSReadLineOption -EditMode Emacs
 
+
 # Module initialization is at the end of file.
+
+# |------------------------------------------------------------
+# | printFiglet: cd to git directory     
+# |------------------------------------------------------------
+#   Go to repository directory
+# |------------------------------------------------------------
+function printFigletTitle {
+    $figletTitle = '
+     ______     _           _ _       _______ _           _                
+    (_____ \   | |         | | |     (_______) |         | |               
+     _____) )__| |__  _____| | |_____ _      | |__  _____| |  _ ___   ____ 
+    |  ____/___)  _ \| ___ | | (_____) |     |  _ \(____ | |_/ ) _ \ / ___)
+    | |   |___ | | | | ____| | |     | |_____| | | / ___ |  _ ( |_| | |    
+    |_|   (___/|_| |_|_____)\_)_)     \______)_| |_\_____|_| \_)___/|_|                                                                           
+
+    -----------------------------------------------------------------------
+    Pallab Mahmud [pmahmud@commercehub.com] 10/7/2016
+    -----------------------------------------------------------------------
+    Pshell-Chakor module successfully loaded!
+    '
+    Write-Host $figletTitle -ForegroundColor Cyan
+}
+
+
+# |------------------------------------------------------------
+# | cg: cd to git directory     
+# |------------------------------------------------------------
+#   Go to repository directory
+# |------------------------------------------------------------
+function cg {
+    $git_location = 'c:\git'
+    cd $git_location
+    ls
+}
 
 # |------------------------------------------------------------
 # | cr: cd to repo directory     
@@ -95,6 +130,28 @@ function npp {
 }
 
 # |------------------------------------------------------------
+# | gerrit: create branch off of master via gerrit
+# |------------------------------------------------------------
+# | create branch off of master via gerrit# 
+# |------------------------------------------------------------
+function gerrit {
+    Param($branchName)
+    Write-Host "Trying to create $branchName branch on gerrit." -ForegroundColor Cyan
+    If(-Not $branchName){
+        Write-Host "Specify a branch name first! " -ForegroundColor Red
+    }else{
+        cr
+        ssh -p 29418 pmahmud@gerrit 'gerrit create-branch' demandstream-main $branchName master
+        Write-Host "Success! $branchName branch created on gerrit." -ForegroundColor Cyan
+        git fetch
+        Write-Host "Checking out $branchName..." -ForegroundColor Cyan
+        git checkout $branchName
+        Write-Host "Success! you can start working now." -ForegroundColor Cyan
+    }
+}
+
+
+# |------------------------------------------------------------
 # | cod: checkout, fetch and reset dev
 # |------------------------------------------------------------
 #  Checkout dev, fetch and reset
@@ -144,6 +201,33 @@ function corn {
 
 }
 
+
+# |------------------------------------------------------------
+# | com: checkout, fetch and reset master
+# |------------------------------------------------------------
+#  Checkout master, fetch and reset
+# |------------------------------------------------------------
+# 
+function com {
+
+    #Checkout dev branch
+    Write-Host "Checking out master branch" -ForegroundColor Cyan
+    git checkout master
+    Write-Host "Success!" -ForegroundColor Green
+
+    #Fetch latest
+    Write-Host "Fetching master branch" -ForegroundColor Cyan
+    git fetch
+    Write-Host "Success!" -ForegroundColor Green
+
+    #Reset everything
+    Write-Host "Resetting master branch" -ForegroundColor Cyan
+    git reset --hard origin/master
+    Write-Host "Success!" -ForegroundColor Green
+
+}
+
+
 # |------------------------------------------------------------
 # | merge: merge feature branch
 # |------------------------------------------------------------
@@ -175,14 +259,10 @@ function cout {
     Param($featureBranch)
 
     If(-Not $featureBranch){        
-        Write-Host "Specify a branch to checkout. Here are the local branches you have : " -ForegroundColor Red
-        git checkout master
-        git fetch
+        Write-Host "Specify a branch to checkout. If you are not sure, consider running com first. Here are the local branches you have : " -ForegroundColor Red
         git branch
     }else{
         Write-Host "Attempting checkout $featureBranch" -ForegroundColor Cyan
-        git checkout master
-        git fetch
         git checkout $featureBranch
     }
 }
@@ -296,4 +376,5 @@ function logr {
 # |---------------------------------------------------------------------------------------------
 
 #  Change directory to our repo folder
+printFigletTitle
 cr
