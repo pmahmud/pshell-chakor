@@ -5,18 +5,18 @@ Set-PSReadLineOption -EditMode Emacs
 # Module initialization is at the end of file.
 
 # |------------------------------------------------------------
-# | printFiglet: cd to git directory     
+# | printFiglet: cd to git directory
 # |------------------------------------------------------------
 #   Go to repository directory
 # |------------------------------------------------------------
 function printFigletTitle {
     $figletTitle = '
-     ______     _           _ _       _______ _           _                
-    (_____ \   | |         | | |     (_______) |         | |               
-     _____) )__| |__  _____| | |_____ _      | |__  _____| |  _ ___   ____ 
+     ______     _           _ _       _______ _           _
+    (_____ \   | |         | | |     (_______) |         | |
+     _____) )__| |__  _____| | |_____ _      | |__  _____| |  _ ___   ____
     |  ____/___)  _ \| ___ | | (_____) |     |  _ \(____ | |_/ ) _ \ / ___)
-    | |   |___ | | | | ____| | |     | |_____| | | / ___ |  _ ( |_| | |    
-    |_|   (___/|_| |_|_____)\_)_)     \______)_| |_\_____|_| \_)___/|_|                                                                           
+    | |   |___ | | | | ____| | |     | |_____| | | / ___ |  _ ( |_| | |
+    |_|   (___/|_| |_|_____)\_)_)     \______)_| |_\_____|_| \_)___/|_|
 
     -----------------------------------------------------------------------
     Pallab Mahmud [pmahmud@commercehub.com] 10/7/2016
@@ -28,7 +28,7 @@ function printFigletTitle {
 
 
 # |------------------------------------------------------------
-# | cg: cd to git directory     
+# | cg: cd to git directory
 # |------------------------------------------------------------
 #   Go to repository directory
 # |------------------------------------------------------------
@@ -39,7 +39,7 @@ function cg {
 }
 
 # |------------------------------------------------------------
-# | cr: cd to repo directory     
+# | cr: cd to repo directory
 # |------------------------------------------------------------
 #   Go to repository directory
 # |------------------------------------------------------------
@@ -49,7 +49,7 @@ function cr {
 }
 
 # |------------------------------------------------------------
-# | xr: open repo in explorer   
+# | xr: open repo in explorer
 # |------------------------------------------------------------
 #   Open the repository folder in the explorer
 # |------------------------------------------------------------
@@ -59,22 +59,22 @@ function xr {
 }
 
 # |------------------------------------------------------------
-# | crw: cd to MerchantWebMVC   
+# | crw: cd to MerchantWebMVC
 # |------------------------------------------------------------
 #   CD to the MerchantWebMVC folder
 # |------------------------------------------------------------
 function crw {
-    $web_location = 'c:\git\demandstream-main\Solution\Web\MerchantWebMvc'     
+    $web_location = 'c:\git\demandstream-main\Solution\Web\MerchantWebMvc'
 	cd $web_location
 }
 
 # |------------------------------------------------------------
-# | xrw: open MerchantWebMVC in explorer   
+# | xrw: open MerchantWebMVC in explorer
 # |------------------------------------------------------------
 #   open the MerchantWebMVC in the explorer
 # |------------------------------------------------------------
 function xrw {
-    $web_location = 'c:\git\demandstream-main\Solution\Web\MerchantWebMvc'     
+    $web_location = 'c:\git\demandstream-main\Solution\Web\MerchantWebMvc'
 	start $web_location
 }
 
@@ -123,16 +123,16 @@ function npp {
     $nppPath = "C:\Program Files (x86)\Notepad++\notepad++.exe"
     Write-Host "Openning $filePath in notepad++" -ForegroundColor Cyan
     If(-Not $filePath){
-        Start $nppPath 
+        Start $nppPath
     }else{
-        Start $nppPath $filePath    
+        Start $nppPath $filePath
     }
 }
 
 # |------------------------------------------------------------
 # | gerrit: create branch off of master via gerrit
 # |------------------------------------------------------------
-# | create branch off of master via gerrit# 
+# | create branch off of master via gerrit#
 # |------------------------------------------------------------
 function gerrit {
     Param($branchName)
@@ -156,7 +156,7 @@ function gerrit {
 # |------------------------------------------------------------
 #  Checkout dev, fetch and reset
 # |------------------------------------------------------------
-# 
+#
 function cod {
 
     #Checkout dev branch
@@ -177,11 +177,11 @@ function cod {
 }
 
 # |------------------------------------------------------------
-# | corn: Checkout release/next fetch and reset 
+# | corn: Checkout release/next fetch and reset
 # |------------------------------------------------------------
 #  Check out release/next, fetch and reset
 # |------------------------------------------------------------
-# 
+#
 function corn {
 
     #Checkout release/next branch
@@ -207,7 +207,7 @@ function corn {
 # |------------------------------------------------------------
 #  Checkout master, fetch and reset
 # |------------------------------------------------------------
-# 
+#
 function com {
 
     #Checkout dev branch
@@ -233,12 +233,12 @@ function com {
 # |------------------------------------------------------------
 #  Performs Merge to dev Steps
 # |------------------------------------------------------------
-# 
+#
 function merge {
 
     Param($featureBranch, $branch = $(git symbolic-ref --short HEAD))
 
-    If(-Not $featureBranch){        
+    If(-Not $featureBranch){
         Write-Host "Specify a branch to merge. Here are the local branches you have: " -ForegroundColor Red
         git branch
     }else{
@@ -253,12 +253,12 @@ function merge {
 # |------------------------------------------------------------
 #  Checks out feature branch that has been already created
 # |------------------------------------------------------------
-# 
+#
 function cout {
 
     Param($featureBranch)
 
-    If(-Not $featureBranch){        
+    If(-Not $featureBranch){
         Write-Host "Specify a branch to checkout. If you are not sure, consider running com first. Here are the local branches you have : " -ForegroundColor Red
         git branch
     }else{
@@ -272,7 +272,7 @@ function cout {
 # |------------------------------------------------------------
 #  Push to feature branch
 # |------------------------------------------------------------
-# 
+#
 function ptf {
     Param($featureBranch = $(git symbolic-ref --short HEAD))
     Write-Host "Attempting to push to $featureBranch" -ForegroundColor Cyan
@@ -296,7 +296,7 @@ function ptd {
 # |------------------------------------------------------------
 #  Push to release/next
 # |------------------------------------------------------------
-# 
+#
 function ptr {
     Write-Host "Attempting to push to release/next" -ForegroundColor Cyan
     #Push to origin/dev
@@ -308,7 +308,7 @@ function ptr {
 # |------------------------------------------------------------
 #  Build the web project
 # |------------------------------------------------------------
-# 
+#
 function buildw {
     Write-Host "Attempting to build Web Solution" -ForegroundColor Cyan
     $MSBuildPath = "C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe"
@@ -332,7 +332,7 @@ function watchw {
 # |------------------------------------------------------------
 #   git status
 # |------------------------------------------------------------
-# 
+#
 function stat {
     Write-Host "Running git status:" -ForegroundColor Cyan
     git status
@@ -343,7 +343,7 @@ function stat {
 # |------------------------------------------------------------
 #   git log
 # |------------------------------------------------------------
-# 
+#
 function log {
     Write-Host "Trying to execute git log" -ForegroundColor Cyan
     git log
@@ -354,7 +354,7 @@ function log {
 # |------------------------------------------------------------
 #   Pretty git log
 # |------------------------------------------------------------
-# 
+#
 function logp {
     Write-Host "Trying to execute git log and make it pretty" -ForegroundColor Cyan
     git log --oneline --graph --decorate
@@ -365,14 +365,46 @@ function logp {
 # |------------------------------------------------------------
 #   git reflog
 # |------------------------------------------------------------
-# 
+#
 function logr {
     Write-Host "Trying to execute git reflog" -ForegroundColor Cyan
     git reflog
 }
 
+function stash {
+    Param($stashName)
+    Write-Host "Trying to stash your current works." -ForegroundColor Cyan
+    git stash save $stashName
+}
+
+function cleanall {
+    Write-Host "Trying to execute git clean -xdf" -ForegroundColor Cyan
+    git clean -xdf
+}
+
+function stashls {
+    Write-Host "Trying to get the stash list." -ForegroundColor Cyan
+    git stash list
+}
+
+function pop {
+    Write-Host "Trying to pop the first item on the stash list." -ForegroundColor Cyan
+    git stash pop stash@"{0}"
+}
+
+function syncdb {
+    Write-Host "Trying to sync MercentAdmin." -ForegroundColor Cyan
+    C:\git\demandstream-main\Solution\Database\ScriptDB\ScriptDB.exe -sync localhost Script_Admin MercentAdmin -SourceDir C:\git\demandstream-main\Solution\Database\Admin
+
+    Write-Host "Trying to sync MerchantBase." -ForegroundColor Cyan
+    C:\git\demandstream-main\Solution\Database\ScriptDB\ScriptDB.exe -sync localhost Script_MerchantBase MerchantBase -SourceDir C:\git\demandstream-main\Solution\Database\MerchantBase
+
+    Write-Host "Trying to sync Merchant_BizarroNordstrom." -ForegroundColor Cyan
+    C:\git\demandstream-main\Solution\Database\ScriptDB\ScriptDB.exe -sync localhost Script_Merchant Merchant_BizarroNordstrom -SourceDir C:\git\demandstream-main\Solution\Database\Merchant
+}
+
 # |---------------------------------------------------------------------------------------------
-# | Module initialization	
+# | Module initialization
 # |---------------------------------------------------------------------------------------------
 
 #  Change directory to our repo folder
